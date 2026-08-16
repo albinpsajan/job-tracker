@@ -1,6 +1,8 @@
 import axios from 'axios'
 
-const BASE_URL = 'http://127.0.0.1:8000/api'
+const configured = import.meta.env.VITE_API_URL
+const apiOrigin = (configured || (import.meta.env.DEV ? 'http://127.0.0.1:8000' : '')).replace(/\/+$/, '')
+const BASE_URL = apiOrigin ? `${apiOrigin}/api` : '/api'
 
 export const ACCESS_TOKEN_KEY = 'access_token'
 export const REFRESH_TOKEN_KEY = 'refresh_token'
